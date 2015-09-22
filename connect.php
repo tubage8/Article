@@ -1,14 +1,14 @@
 <?php
     require_once('config.php');
-    //Á´½Ó
+    //è¿žæŽ¥
     if(($con = mysql_connect(HOST, USERNAME, PASSWORD))){
         echo mysql_error();
     }
-    //Á¬¿â
+    //è¿žåº“
     if(!mysql_select_db('articles')){
         echo mysql_error();
     }
-    //ÉèÖÃ×Ö·û¼¯
+    //è®¾ç½®æ•°æ®é›†
     if(!mysql_query('set names utf8')){
         echo mysql_error();
     }

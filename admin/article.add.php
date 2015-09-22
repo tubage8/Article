@@ -20,7 +20,7 @@ body {
   </tr>
   <tr>
     <td width="156" height="287" align="left" valign="top" bgcolor="#FFFF99"><p><a href="article.add.php">发布文章</a></p>
-    <p><a href="article.manage.php">管理文章</a></p>      <a href="article.add.php"></a></td>
+    <p><a href="article.manage.php">管理文章</a></p>      </td>
     <td width="837" valign="top" bgcolor="#FFFFFF">
     <form id="form1" name="form1" method="post" action="article.add.handle.php">
       <table width="779" border="0" cellpadding="8" cellspacing="1">

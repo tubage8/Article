@@ -1,5 +1,24 @@
 <?php
     require_once('../connect.php');
-    //∞—¥´µ›π˝¿¥µƒ–≈œ¢»Îø‚
-    print_r($_POST);
+    //Êää‰º†ÈÄíËøáÊù•ÁöÑÊï∞ÊçÆÂÖ•Â∫ì
+//     print_r($_POST);
+
+    if(!(isset($_POST['title']) && (!empty($_POST['title'])))){
+        echo "<script>alert('Ê†áÈ¢ò‰∏çËÉΩ‰∏∫Á©∫ÔºÅ');window.location.href='article.add.php';</script>";
+    }
+    
+    $title = $_POST['title'];
+    $author = $_POST['author'];
+    $description = $_POST['description'];
+    $content = $_POST['content'];
+    $dateline = time();
+    
+    $sql = 'insert into article(title,author,description,content,dateline) values("$title","$author","$description","$content",$dateline)';
+    
+    
+    if(mysql_query($sql)){
+        echo "<script>alert('Insert into database successful!);window.location.href='article.add.php';</script>";
+    }else{
+        echo "<script>alert('Insert into database failed!);window.location.href='article.add.php';</script>";
+    } 
 ?>
