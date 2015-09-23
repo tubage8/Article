@@ -13,12 +13,12 @@
     $content = $_POST['content'];
     $dateline = time();
     
-    $sql = 'insert into article(title,author,description,content,dateline) values("$title","$author","$description","$content",$dateline)';
+    echo $sql = "insert into article(title,author,description,content,dateline) values('$title','$author','$description','$content',$dateline)";
     
     
     if(mysql_query($sql)){
-        echo "<script>alert('Insert into database successful!);window.location.href='article.add.php';</script>";
+        echo "<script>alert('Insert into database successful!');window.location.href='article.manage.php';</script>";
     }else{
-        echo "<script>alert('Insert into database failed!);window.location.href='article.add.php';</script>";
+        echo "<script>alert('Insert into database failed!');window.location.href='article.manage.php';</script>";
     } 
 ?>
