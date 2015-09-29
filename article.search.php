@@ -1,13 +1,14 @@
 <?php 
     require_once ('connect.php');
-    
-    $id = intval($_GET['id']);
-    $sql = "select * from article where id=$id";
+    $key = $_GET['key'];
+    $sql = "select * from article where title like '$key%' order by dateline desc";
     $query = mysql_query($sql);
-    if($query){
-        $data = mysql_fetch_assoc($query);
+    if($query && mysql_num_rows($query)){
+        while ($row = mysql_fetch_assoc($query)){
+            $data[] = $row;
+        }
     }else {
-        echo "加载出错，请刷新！";
+        $data = array();
     }
 ?>
 
@@ -68,21 +69,70 @@
 				<div class="row"> 
 					
 					<!-- Content -->
-					<div id="show_content" class="8u skel-cell-important">
+					<div id="content" class="8u skel-cell-important">
 						<section>
 							<header>
-								<h2 id="show_title"><?php echo $data['title']?></h2>
-								<span id="show_author">作者：<?php echo $data['author']?></span>
+								<h2>欢迎来到兔八哥的博客!</h2>
+								<span class="byline">@兔八哥</span>
 							</header>
-<!-- 							<a href="#" class="image full"><img src="images/pic07.jpg" alt="" /></a> -->
+							<a href="#" class="image full"><img src="images/pic07.jpg" alt="" /></a>
 <!-- 							<p>This is <strong>Iridium</strong>, a responsive HTML5 site template freebie by <a href="http://templated.co">TEMPLATED</a>. Released for free under the <a href="http://templated.co/license">Creative Commons Attribution</a> license, so use it for whatever (personal or commercial) &ndash; just give us credit! Check out more of our stuff at <a href="http://templated.co">our site</a> or follow us on <a href="http://twitter.com/templatedco">Twitter</a>.</p> -->
 <!-- 							<p>Sed etiam vestibulum velit, euismod lacinia quam nisl id lorem. Quisque erat. Vestibulum pellentesque, justo mollis pretium suscipit, justo nulla blandit libero, in blandit augue justo quis nisl. Fusce mattis viverra elit. Fusce quis tortor. Consectetuer adipiscing elit. Nam pede erat, porta eu, lobortis eget lorem ipsum dolor.</p> -->
-						        <p><?php echo $data['content']?></p>
+						        <p>兔八哥的博客文章开通啦，欢迎大家来浇水！</p>
 						</section>
 					</div>
 					
 					<!-- Sidebar -->
-
+					<div id="sidebar" class="4u">
+					       <div id="searcher">
+						        <ul>
+						          <li id="search">
+						              <h3>搜索</h3>
+						              <form method="get" action="article.search.php">
+						                  <fieldset>
+						                      <input type="text" id="s" name="key" value="" />
+						                      <input type="submit" id="x" value="搜索" />
+						                  </fieldset>
+						              </form>
+						          </li>
+						        </ul>
+						    </div>
+					
+						<section>
+							<header>
+								<h2>文章列表</h2>
+							</header>
+							<ul class="style">
+								<!-- <li>
+									<p class="posted">August 11, 2002  |  (10 )  Comments</p>
+									<img src="images/pic04.jpg" alt="" />
+									<p class="text">Nullam non wisi a sem eleifend. Donec mattis libero eget urna. Pellentesque viverra enim.</p>
+								</li>
+								<li>
+									<p class="posted">August 11, 2002  |  (10 )  Comments</p>
+									<img src="images/pic05.jpg" alt="" />
+									<p class="text">Nullam non wisi a sem eleifend. Donec mattis libero eget urna. Pellentesque viverra enim.</p>
+								</li> -->
+								<?php 
+								    if (empty($data)){
+								        echo "该博客目前没有任何文章";
+								    }else {
+								        foreach ($data as $value){
+								                
+								?>
+								<li>
+									<p class="posted"><?php echo date('Y年m月d日  H:i:s修改',$value['dateline'])?></p>
+									<img src="images/pic0<?php echo rand(4,6)?>.jpg" alt="" />
+									<p class="list_title"><?php echo $value['title']?></p>
+									<p class="text"><?php echo $value['description']?>&nbsp;&nbsp;<a href="article.show.php?id=<?php echo $value['id']?>">详细内容</a>&nbsp;&nbsp;&raquo;&nbsp;&nbsp;</p>
+								</li>
+								<?php 
+								        }
+								    }
+								?>
+							</ul>
+						</section>
+					</div>
 				</div>
 			</div>
 		</div>
