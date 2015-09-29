@@ -1,11 +1,10 @@
 <?php 
     require_once ('connect.php');
     
-    $id = intval($_GET['id']);
-    $sql = "select * from article where id=$id";
+    $sql = "select * from introduceme";
     $query = mysql_query($sql);
-    if($query){
-        $data = mysql_fetch_assoc($query);
+    if($query && mysql_num_rows($query)){
+        $contact = mysql_result($query,0,'contact');
     }else {
         echo "加载出错，请刷新！";
     }
@@ -71,13 +70,12 @@
 					<div id="show_content" class="8u skel-cell-important">
 						<section>
 							<header>
-								<h2 id="show_title"><?php echo $data['title']?></h2>
-								<span id="show_author">作者：<?php echo $data['author']?></span>
+								<h2 id="show_title">联系我们</h2>
 							</header>
 <!-- 							<a href="#" class="image full"><img src="images/pic07.jpg" alt="" /></a> -->
 <!-- 							<p>This is <strong>Iridium</strong>, a responsive HTML5 site template freebie by <a href="http://templated.co">TEMPLATED</a>. Released for free under the <a href="http://templated.co/license">Creative Commons Attribution</a> license, so use it for whatever (personal or commercial) &ndash; just give us credit! Check out more of our stuff at <a href="http://templated.co">our site</a> or follow us on <a href="http://twitter.com/templatedco">Twitter</a>.</p> -->
 <!-- 							<p>Sed etiam vestibulum velit, euismod lacinia quam nisl id lorem. Quisque erat. Vestibulum pellentesque, justo mollis pretium suscipit, justo nulla blandit libero, in blandit augue justo quis nisl. Fusce mattis viverra elit. Fusce quis tortor. Consectetuer adipiscing elit. Nam pede erat, porta eu, lobortis eget lorem ipsum dolor.</p> -->
-						        <p><?php echo $data['content']?></p>
+						        <p><?php echo $contact?></p>
 						</section>
 					</div>
 					

@@ -213,6 +213,9 @@
 			<div class="container">
 				Design: <a href="http://templated.co">tubage</a> Images: <a href="http://unsplash.com">Unsplash</a> (<a href="http://unsplash.com/cc0">CC0</a>)
 			</div>
+			<div class="container">
+                <a href="about.php">关于我们</a>&nbsp;&nbsp;<a href="contact.php">联系我们</a>
+			</div>
 		</div>
 		
 	</body>
